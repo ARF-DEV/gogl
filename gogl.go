@@ -12,6 +12,7 @@ func GetVersion() string {
 
 func CompileShader(shaderSource string, shaderType uint32) (uint32, error) {
 	shaderId := gl.CreateShader(shaderType)
+	shaderSource += "\x00"
 	cSource, free := gl.Strs(shaderSource)
 	gl.ShaderSource(shaderId, 1, cSource, nil)
 	free()
